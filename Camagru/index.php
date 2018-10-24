@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,6 +23,14 @@
             <input type="password" name="password" placeholder="password" required> <br>
             <input type="hidden" name="login" value="login">
             <button type="submit">LOGIN</button>
+            <p>
+                <font color="red">
+                    <?php
+                        if ($_SESSION['verified'] == false)
+                            echo 'Your Password or Email is incorrect. Please double-check your details.';
+                    ?>
+                </font>
+            </p>
         </form>
         <hr>
         <form action="users.php" method="POST">
@@ -34,8 +43,16 @@
             <input type="password" name="password" placeholder="Password" required> <br>
             <input type="hidden" name="signup" value="signup">
             <button type="submit">SIGNUP</button>
-    </form>
+            <p>
+                <font color="red">
+                    <?php
+                        if ($_SESSION['userexist'] == true)
+                            echo 'The user with these information already exist.';
+                    ?>
+                </font>
+            </p>
+        </form>
     </div>
-    <?php include('footer.php'); ?>
+    <?php include('./includes/footer.php'); ?>
 </body>
 </html>

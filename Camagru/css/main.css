@@ -1,17 +1,28 @@
-/* HEADER */
+/*••••••••••••••••••••••••••••••••••••••••••••
+    Main styling sheet for Camagru
+••••••••••••••••••••••••••••••••••••••••••••*/
 body{
     margin-left: 10%;
     margin-right: 10%;
+    font-family: 'Courier New', Courier, monospace;
 }
+
+/*••••••••••••••••••••••••••••••••••••••••••••••
+                    HEADER               
+••••••••••••••••••••••••••••••••••••••••••••••*/
 header{
     background-color: azure;
     width: 100%;
     height: 60px;
     text-align: center;
-    font-family: 'Courier New', Courier, monospace;
     padding-top: 2px;
+    border: 1px solid #ccc;
 }
-/* FOOOTER */
+
+
+/*••••••••••••••••••••••••••••••••••••••••••••••••
+                    FOOTER              
+•••••••••••••••••••••••••••••••••••••••••••••••••*/
 footer{
     background-color: azure;
     width: 100%;
@@ -19,9 +30,12 @@ footer{
     clear: both;
     text-align: center;
     padding: 5px 0 5px 0;
-    font-family: 'Courier New', Courier, monospace;
+    border: 1px solid #ccc;
 }
-/* MAIN CONTAINER */
+
+/*••••••••••••••••••••••••••••••••••••••••••••••••
+          MAIN CONTAINER         
+•••••••••••••••••••••••••••••••••••••••••••••••••*/
 .main-container{
     width: 70%;
     height: 600px;
@@ -32,61 +46,75 @@ footer{
     width: 100%;
     height: 100%;
 }
-/* USER CONTAINER */
+
+
+/*•••••••••••••••••••••••••••••••••••••••••••••••••••
+          USER CONTAINER        
+•••••••••••••••••••••••••••••••••••••••••••••••••••*/
 .user-container{
     text-align: center;
     /* background-color: antiquewhite; */
-    width: 30%;
-    height: 0;
+    width: 28%;
+    height: 600px;
     margin: 20px 0 20px 0;
     float: right;
+   /*  float: left; */
     padding: 10px 0 10px 0;
+    border: 1px solid #ccc;
 }
 .user-container button{
     width: 50%;
     height: 10%;
     background-color: azure;
-    font-family: 'Courier New', Courier, monospace;
 }
 input{
     width: 80%;
     height: 50%;
-    font-family: 'Courier New', Courier, monospace;
 }
-/* VIDEO CONTAINER */
+
+
+/*••••••••••••••••••••••••••••••••••••••••••••••••••
+                    VIDEO CONTAINER        
+••••••••••••••••••••••••••••••••••••••••••••••••••*/
 .video-container{
     text-align: center;
     width: 50%;
     height: 600px;
     margin: 20px 0 20px 0;
     float: left;
+    border: 1px solid #ccc;
 }
 .video-container video{
     width: 100%;
     height: 80%;
 }
-/* GALLERY */
+
+/*••••••••••••••••••••••••••••••••••••••••••••••••••
+                    GALLERY DIV      
+••••••••••••••••••••••••••••••••••••••••••••••••••*/
 .gallery{
     background-color: antiquewhite;
     width: 50%;
     height: 600px;
     text-align: center;
-    font-family: 'Courier New', Courier, monospace;
     display: inline-block;
     overflow: hidden;
+    /* border: 1px solid #ccc; */
 }
 #canvas{
     display: none;
 }
-/* TAKE PHOTO BUTTON */
-#photo{
+
+/*••••••••••••••••••••••••••••••••••••••••••••••••••
+                TAKE/UPLOAD BUTTON        
+••••••••••••••••••••••••••••••••••••••••••••••••••*/
+#photo, #upload-photo{
     width: 50%;
     height: 8%;
     background-color: azure;
-    font-family: 'Courier New', Courier, monospace;
     font-size: 16px;
 }
-#photo:hover{
+#photo:hover, #upload-photo:hover{
     background-color: antiquewhite;
 }
 #filter{
@@ -94,10 +122,75 @@ input{
     height: 8%;
 }
 p{
-    font-family: 'Courier New', Courier, monospace;
 }
 hr{
     margin-top: 30%;
     margin-bottom: 15%;
     width: 50%;
+}
+/*••••••••••••••••••••••••••••••••••••••••••••••••••
+                    NAVIGATION BAR        
+••••••••••••••••••••••••••••••••••••••••••••••••••*/
+ul{
+    list-style-type: none;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    overflow: hidden;
+    float: right;
+    margin-left: 30%;
+    /* float: right; */
+}
+li{
+    float: left;
+}
+li a{
+    display: block;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    padding: 15px 17px;
+}
+li a:hover{
+    background-color: antiquewhite;
+}
+#title{
+    float: left;
+    margin-left: 4%;
+}
+
+/*••••••••••••••••••••••••••••••••••••••••••••••••••••
+            USER PROFILE SETTINGS
+••••••••••••••••••••••••••••••••••••••••••••••••••••*/
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: azure;
+}
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+}
+.tab button:hover {
+    background-color: antiquewhite;
+}
+.tab button.active {
+    background-color: antiquewhite;
+}
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+    height: 600px;
+}
+.tabcontent input{
+    margin-left: 10%;
 }
