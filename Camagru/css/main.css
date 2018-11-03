@@ -14,9 +14,11 @@ header{
     background-color: azure;
     width: 100%;
     height: 60px;
-    text-align: center;
+   /*  text-align: center; */
     padding-top: 2px;
-    border: 1px solid #ccc;
+    margin-bottom: 1px;
+    /* border: 1px solid #ccc; */
+    box-shadow: 5px 5px 8px grey;
 }
 
 
@@ -30,7 +32,8 @@ footer{
     clear: both;
     text-align: center;
     padding: 5px 0 5px 0;
-    border: 1px solid #ccc;
+    /* border: 1px solid #ccc; */
+    box-shadow: 5px 5px 8px grey;
 }
 
 /*••••••••••••••••••••••••••••••••••••••••••••••••
@@ -41,6 +44,7 @@ footer{
     height: 600px;
     margin: 20px 0 20px 0;
     float: left;
+    box-shadow: 5px 5px 8px grey;
 }
 .main-container img{
     width: 100%;
@@ -53,26 +57,55 @@ footer{
 •••••••••••••••••••••••••••••••••••••••••••••••••••*/
 .user-container{
     text-align: center;
-    /* background-color: antiquewhite; */
+    background-color: #F1F1F1;
     width: 28%;
-    height: 600px;
+    height: 580px;
     margin: 20px 0 20px 0;
     float: right;
    /*  float: left; */
     padding: 10px 0 10px 0;
-    border: 1px solid #ccc;
+    box-shadow: 5px 5px 8px grey;
+    /* border: 1px solid #ccc; */
 }
 .user-container button{
-    width: 50%;
-    height: 10%;
-    background-color: azure;
-}
-input{
     width: 80%;
-    height: 50%;
+    height: 38px;
+    box-sizing: border-box;
+    background-color: azure;
+    border: 1px solid azure;
 }
-
-
+.user-container button:hover{
+    box-shadow: 5px 5px 8px grey;
+}
+input[type=text], input[type=password], input[type=email]{
+    width: 80%;
+    padding: 12px 12px;
+    margin: 5px 0;
+    display: inline-block;
+    border: 1px solid azure;
+    box-sizing: border-box;
+}
+.login input{
+    width: 15%;
+    padding: 12px 12px;
+    margin: 5px 0;
+    /* display: inline-block; */
+    border: 1px solid #F1F1F1;
+    box-sizing: border-box;
+}
+.login button{
+    width: 8%;
+    height: 38px;
+    border: 1px solid #f1f1f1;
+    background-color: #f1f1f1;
+}
+.login button:hover{
+    box-shadow: 5px 5px 8px grey;
+    border: 1px solid #F1F1F1;
+}
+.user-profile input{
+    display: inline-block;
+}
 /*••••••••••••••••••••••••••••••••••••••••••••••••••
                     VIDEO CONTAINER        
 ••••••••••••••••••••••••••••••••••••••••••••••••••*/
@@ -82,7 +115,8 @@ input{
     height: 600px;
     margin: 20px 0 20px 0;
     float: left;
-    border: 1px solid #ccc;
+    background-color: #F1F1F1;
+    box-shadow: 5px 5px 8px grey;
 }
 .video-container video{
     width: 100%;
@@ -93,16 +127,25 @@ input{
                     GALLERY DIV      
 ••••••••••••••••••••••••••••••••••••••••••••••••••*/
 .gallery{
-    background-color: antiquewhite;
-    width: 50%;
+    /* background-color: antiquewhite; */
+    width: 40%;
     height: 600px;
     text-align: center;
-    display: inline-block;
-    overflow: hidden;
+    margin: 20px 0 20px 0;
+    /* display: inline-block */;
+    /* overflow: hidden; */
     /* border: 1px solid #ccc; */
+    background-color: #F1F1F1;
+    box-shadow: 5px 5px 8px grey;
+    float: right;
 }
 #canvas{
     display: none;
+}
+.gallery-container{
+    height: 600px;
+    width: 100%;
+
 }
 
 /*••••••••••••••••••••••••••••••••••••••••••••••••••
@@ -111,18 +154,21 @@ input{
 #photo, #upload-photo{
     width: 50%;
     height: 8%;
+    margin-bottom: 1%;
     background-color: azure;
+    border: 1px solid azure;
     font-size: 16px;
 }
 #photo:hover, #upload-photo:hover{
-    background-color: antiquewhite;
+    /* background-color: antiquewhite; */
+    border: 1px solid azure;
+    box-shadow: 5px 5px 8px grey;
 }
 #filter{
     width: 50%;
     height: 8%;
 }
-p{
-}
+
 hr{
     margin-top: 30%;
     margin-bottom: 15%;
@@ -131,33 +177,29 @@ hr{
 /*••••••••••••••••••••••••••••••••••••••••••••••••••
                     NAVIGATION BAR        
 ••••••••••••••••••••••••••••••••••••••••••••••••••*/
-ul{
-    list-style-type: none;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    position: fixed;
-    overflow: hidden;
-    float: right;
-    margin-left: 30%;
-    /* float: right; */
-}
-li{
+#logo{
     float: left;
+    margin-left: 5%;
 }
-li a{
-    display: block;
-    color: black;
-    text-align: center;
+#logo a{
     text-decoration: none;
-    padding: 15px 17px;
+    color: black;
 }
-li a:hover{
-    background-color: antiquewhite;
-}
-#title{
+#gal{
     float: left;
-    margin-left: 4%;
+    margin: 1.2% 5% 0 5%;
+    color: black;
+}
+#gal li{
+    display: inline;
+    list-style-type: none;
+}
+#gal a{
+    text-decoration: none;
+    color: black;
+}
+#login{
+    margin-left: 10%;
 }
 
 /*••••••••••••••••••••••••••••••••••••••••••••••••••••
@@ -165,7 +207,8 @@ li a:hover{
 ••••••••••••••••••••••••••••••••••••••••••••••••••••*/
 .tab {
     overflow: hidden;
-    border: 1px solid #ccc;
+    /* border: 1px solid #ccc; */
+    box-shadow: 5px 5px 8px grey;
     background-color: azure;
 }
 .tab button {
@@ -185,12 +228,47 @@ li a:hover{
     background-color: antiquewhite;
 }
 .tabcontent {
+    background-color: #f1f1f1;
     display: none;
     padding: 6px 12px;
-    border: 1px solid #ccc;
+    /* border: 1px solid #ccc; */
+    box-shadow: 5px 5px 8px grey;
     border-top: none;
-    height: 600px;
+    height: 500px;
+    position: relative;
+    margin-bottom: 2%;
 }
 .tabcontent input{
     margin-left: 10%;
 }
+.user-profile p, h3{
+    margin-left: 10%;
+}
+
+/*••••••••••••••••••••••••••••••••••••••••••••••••••••
+                ACTIVATION PAGE
+••••••••••••••••••••••••••••••••••••••••••••••••••••*/
+.activation{
+    text-align: center;
+    margin-top: 10%;
+    margin-bottom: 10%;
+}
+.user-profile #upload-photo{
+    margin-left: 25%;
+}
+
+/*••••••••••••••••••••••••••••••••••••••••••••••••••••
+                INFINITE SCROLLING
+••••••••••••••••••••••••••••••••••••••••••••••••••••*/
+#infinite-list {
+    /* We need to limit the height and show a scrollbar */
+    width: 200px;
+    height: 300px;
+    overflow: auto;
+    margin-left: 10%;
+  
+    /* Optional, only to check that it works with margin/padding */
+    margin: 30px;
+    padding: 20px;
+    border: 10px solid black;
+  }

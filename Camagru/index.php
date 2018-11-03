@@ -1,4 +1,6 @@
-<?php session_start(); ?>
+<?php 
+    session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,52 +9,44 @@
     <title>Camagru</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="./css/main.css" />
-    <script src="main.js"></script>
 </head>
 <body>
     <header>
-        <h1>Camagru</h1>
-    </header>
+        <div id="logo">
+            <h4 id="title"><a href="#">Camagru</a></h4>
+        </div>
+        <div>
+            <ul id="gal">
+                <li><a href="gallery.php">Gallery</a></li>
+            </ul>
+        </div>
+        <div id="login">
+            <form action="users.php" method="POST" class="login">
+                <input  type="text"     name="username" placeholder="username"  required>
+                <input  type="password" name="password" placeholder="password"  required>
+                <input  type="hidden"   name="login" value="login">
+                <button type="submit">LOGIN</button>
+            </form>
+        </div>   
+</header>
     <div class="main-container">
         <img src="./img/main.jpg" alt="main">
     </div>
     <div class="user-container">
         <form action="users.php" method="POST">
-            <P>Already have an account? Login below.</p>
-            <input type="email" name="email" placeholder="email" required> <br>
-            <input type="password" name="password" placeholder="password" required> <br>
-            <input type="hidden" name="login" value="login">
-            <button type="submit">LOGIN</button>
-            <p>
-                <font color="red">
-                    <?php
-                        if ($_SESSION['verified'] == false)
-                            echo 'Your Password or Email is incorrect. Please double-check your details.';
-                    ?>
-                </font>
-            </p>
-        </form>
-        <hr>
-        <form action="users.php" method="POST">
+            <h4>Sign Up</h4>
             <p>Create an account below.</p>
-            <input type="email" name="email" placeholder="email" required> <br>
-            <input type="text" name="firstname" placeholder="firstname" required> <br>
-            <input type="text" name="lastname" placeholder="lastname" required> <br>
-            <input type="text" name="username" placeholder="username" required> <br>
-            <input type="tel" name="cellnumber" placeholder="Cellnumber" required> <br>
-            <input type="password" name="password" placeholder="Password" required> <br>
-            <input type="hidden" name="signup" value="signup">
-            <button type="submit">SIGNUP</button>
-            <p>
-                <font color="red">
-                    <?php
-                        if ($_SESSION['userexist'] == true)
-                            echo 'The user with these information already exist.';
-                    ?>
-                </font>
-            </p>
+            <input  type="text"    name="username"  placeholder="username"  required> <br>
+            <input  type="email"   name="email"     placeholder="email"     required> <br>
+            <input  type="text"    name="firstname" placeholder="firstname" required> <br>
+            <input  type="text"    name="lastname"  placeholder="lastname"  required> <br>
+            <input  id="password"                   type="password"         name="password"         placeholder="Password"          required> <br>
+            <input  id="confirm-password"           type="password"         name="confirmpassword"  placeholder="Comfirm Password"  required> <br>
+            <input  type="hidden"  name="signup"    value="signup"> <br>
+            <button type="submit"  name="submit"    class="user-button">SIGNUP</button> <br>
         </form>
     </div>
     <?php include('./includes/footer.php'); ?>
+    <script src="./js/main.js"></script>
 </body>
 </html>
