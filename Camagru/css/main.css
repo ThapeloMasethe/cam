@@ -139,13 +139,50 @@ input[type=text], input[type=password], input[type=email]{
     box-shadow: 5px 5px 8px grey;
     float: right;
 }
+.gallery img{
+    width: 20%;
+    height: 20%;
+}
 #canvas{
     display: none;
 }
 .gallery-container{
-    height: 600px;
+    height: 60%;
     width: 100%;
 
+}
+.filters-container img{
+    height: 80px;
+    width: 80px;
+}
+.filters{
+    float: left;
+    width: 80px;
+    height: 100px;
+    background-color: azure;
+    margin: 6px 0 0 6px;
+}
+.filters img{
+    width: 80px;
+    height: 100px;
+}
+.filters img:hover{
+    box-shadow: 5px 5px 8px grey;
+}
+.superpose{
+    background-color: #f1f1f1;
+    float: left;
+    height: 50%;
+}
+.edit-panel{
+    clear: both;
+    height: 50%;
+    background-color: #f1f1f1;
+    width: 100%;
+}
+.edit-panel img{
+    width: 50%;
+    height: 30%;
 }
 
 /*••••••••••••••••••••••••••••••••••••••••••••••••••
@@ -262,13 +299,13 @@ hr{
 ••••••••••••••••••••••••••••••••••••••••••••••••••••*/
 #infinite-list {
     /* We need to limit the height and show a scrollbar */
-    width: 200px;
-    height: 300px;
+    width: 97.5%;
+    height: 100%;
     overflow: auto;
-    margin-left: 10%;
-  
+    float: left;
     /* Optional, only to check that it works with margin/padding */
-    margin: 30px;
-    padding: 20px;
-    border: 10px solid black;
+    margin: 30px 0 30px 0;
+    /* padding: 20px; */
+    box-shadow: 5px 5px 8px grey;
+    margin-right: 0;
   }

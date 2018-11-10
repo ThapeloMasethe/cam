@@ -1,12 +1,15 @@
-let width = 500;
-let height = 0;
-let filter = 'none';
+let width     = 500;
+let height    = 0;
+let filter    = 'none';
 let streaming = false;
 
-const video = document.getElementById('video');
-const photo = document.getElementById('photo');
-const canvas = document.getElementById('canvas');
+const video   = document.getElementById('video');
+const photo   = document.getElementById('photo');
+const canvas  = document.getElementById('canvas');
 const gallery = document.getElementById('gallery');
+const panel   = document.getElementById('pre-edit');
+const pose    = document.getElementById('pose');
+const pfilter = document.getElementById('pf');
 
 navigator.mediaDevices.getUserMedia({video: true, audio: false})
   .then(function(stream){
@@ -19,8 +22,7 @@ navigator.mediaDevices.getUserMedia({video: true, audio: false})
   });
 
   video.addEventListener('canplay', function(e){
-    if(!streaming)
-    {
+    if(!streaming){
       height = video.videoHeight / (video.videoWidth / width);
       video.setAttribute('width', width);
       video.setAttribute('height', height);
@@ -34,20 +36,20 @@ navigator.mediaDevices.getUserMedia({video: true, audio: false})
     take_photo();
     e.preventDefault();
   }, false);
-  function take_photo(){
-    const context = canvas.getContext('2d');
-    if (width && height)
-    {
-      canvas.width = width;
-      canvas.height = height;
-      context.drawImage(video, 0, 0, width, height);
 
+  function take_photo(){
+    if (width && height){
+      canvas.width  = width;
+      canvas.height = height;
+      const context = canvas.getContext('2d');
+      context.drawImage(video, 0, 0, width, height);
       const imgUrl = canvas.toDataURL('image/png');
       const img = document.createElement('img');
       img.setAttribute('src', imgUrl);
-      gallery.appendChild(img);
+      panel.appendChild(img);
     }
   }
+
   /* Uploading an image using jQuery */
 /*•••••••••••••••••••••••••••••••••••••••••••••••••
             USER PROFILE SETTINGS
@@ -66,40 +68,23 @@ function open_profile(evnt, tabname){
     evnt.currentTarget.className += " active";
 }
 
-/*•••••••••••••••••••••••••••••••••••••••••••••••••
-            PASSWORD VALIDATOR
-••••••••••••••••••••••••••••••••••••••••••••••••••*/
-function validate_password()
-{
-    var password = document.getElementById("password").value;
-    console.log(password);
-    var confirm_password = document.getElementById("confirm-password").value;
-    console.log(confirm_password);
-    if (password != confirm_password)
-      document.getElementById("confirm-password").setCustomValidity("Password dont match");
-    else
-      document.getElementById("confirm-password").setCustomValidity('');
-}
-document.getElementsByName("submit")[0].onclick = validate_password();
-
-var listElm = document.querySelector('#infinite-list');
-
-// Add 20 items.
-var nextItem = 1;
-var loadMore = function(){
-  for (var i = 0; i < 20; i++) {
-    var item = document.createElement('li');
-    item.innerText = 'Item ' + nextItem++;
-    listElm.appendChild(item);
+function add_superpose(color){
+ /*  video.style.filter = color;
+  pose.setAttribute("src", "./filters/bunny.png");
+  pose.setAttribute("width", "300");
+  pose.setAttribute("height", "300");
+  video.appendChild(pose);
+  console.log('Trying...'); */
+  if (width && height){
+    canvas.width  = width;
+    canvas.height = height;
+    pose.setAttribute("width", "300");
+    pose.setAttribute("height", "300");
+    const context = canvas.getContext('2d');
+    context.drawImage(pose, 0, 0, width, height);
+    const myPoseUrl = canvas.toDataURL('image/png');
+    const myPose = document.createElement('img');
+    myPose.setAttribute('src', myPoseUrl);
+    gallery.appendChild(myPose);
   }
 }
-
-// Detect when scrolled to bottom.
-listElm.addEventListener('scroll', function() {
-  if (listElm.scrollTop + listElm.clientHeight >= listElm.scrollHeight) {
-    loadMore();
-  }
-});
-
-// Initially load some items.
-loadMore();

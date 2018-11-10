@@ -23,15 +23,28 @@
     <div class="video-container">
         <video  id="video"></video>
         <button id="photo">Take Photo</button>
-        <form action="users.php" method="POST" enctype="multipart/form-data">
-            <input type="file" name="image" size="25" />
-            <button id="upload-photo" type="submit" name="upload">Upload Photo</button>
+        <form action="users.php"  method="POST" enctype="multipart/form-data">
+            <input  type="file"   name="image"  size="25" />
+            <button type="submit" name="upload" id="upload-photo" >Upload Photo</button>
         </form>
-        <canvas id="canvas"></canvas>
+        <canvas id="canvas" ></canvas>
     </div>
 
     <div id="gallery" class="gallery">
-        <h1>Gallery</h1>
+        <div class="superpose">
+            <h4>Edit Yout Photo</h4>
+            <div class="filters"><img id="pose" onclick="add_superpose('grayscale(100%)')" src="./filters/bunny.png" alt=""></div>
+            <div class="filters"><img id="pose" onclick="add_superpose('grayscale(100%)')" src="./filters/colorsky.png"  alt=""></div>
+            <div class="filters"><img id="pose" onclick="add_superpose('grayscale(100%)')" src="./filters/cupcake.png"   alt=""></div>
+            <div class="filters"><img id="pose" onclick="add_superpose('grayscale(100%)')" src="./filters/floral.png"    alt=""></div>
+            <div class="filters"><img id="pose" onclick="add_superpose('grayscale(100%)')" src="./filters/frame1.png"    alt=""></div>
+            <div class="filters"><img id="pose" onclick="add_superpose('grayscale(100%)')" src="./filters/giraffe.png"   alt=""></div>
+            <div class="filters"><img id="pose" onclick="add_superpose('grayscale(100%)')" src="./filters/vector.png"    alt=""></div>
+        </div>
+        <div class="edit-panel" id="edit-panel">
+            <div id="pre-edit"></div>
+            <button id="upload-photo">Save Your Photo</button>
+        </div>
     </div>
     <?php include('./includes/footer.php'); ?>
     <script src="./js/main.js"></script>
