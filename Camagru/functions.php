@@ -21,7 +21,7 @@
         }
     }
     
-    function sign_up($user, $conn)
+    /* function sign_up($user, $conn)
     {
         try
         {
@@ -55,9 +55,7 @@
             $uid = md5(uniqid($user[0]));
             try
             {
-                /* $add = $conn->prepare('INSERT INTO users(user_token)
-                VALUES("'. $uid .'")');
-                $add->execute(); */
+               
                 $update = $conn->prepare("UPDATE `users` SET `user_token` = '$uid'
                 WHERE username = '$user[0]'");
                 $update->execute(); 
@@ -69,7 +67,7 @@
             }
             die();
         }
-    }
+    } */
 
     function send_mail($email, $uid)
     {

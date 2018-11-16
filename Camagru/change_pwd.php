@@ -13,14 +13,13 @@
         <h1>Camagru</h1>
     </header>
    <div class="activation">
-        <h3>Account Activation</h3>
-        <p>Confim below for your registration to Camagru</p>
+        <h3>Change Password</h3>
+        <p>Your are about to change your passwords.</p>
         <form action="users.php" method="POST">
-            <input type="hidden" name="activation" value="activation">
-            <input type="submit"  name="activation" value="Activate">
+            <input type="hidden" name="confirmation" value="confirmation">
+            <input type="submit"  name="confirmation" value="Confirm">
             <!-- <button class="photo">Activate</button> -->
         </form>
    </div>
     <?php include('./includes/footer.php'); ?>                                                                                                                                                                                                                              
 </body>
-</html>

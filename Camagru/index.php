@@ -17,7 +17,7 @@
         </div>
         <div>
             <ul id="gal">
-                <li><a href="gallery.php">Gallery</a></li>
+                <li><a href="public_gallery.php">Gallery</a></li>
             </ul>
         </div>
         <div id="login">
@@ -27,6 +27,7 @@
                 <input  type="hidden"   name="login" value="login">
                 <button type="submit">LOGIN</button>
             </form>
+            <a href="forgot_password.php">forgot password?</a>
         </div>   
 </header>
     <div class="main-container">

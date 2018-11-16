@@ -6,10 +6,12 @@ let streaming = false;
 const video   = document.getElementById('video');
 const photo   = document.getElementById('photo');
 const canvas  = document.getElementById('canvas');
-const gallery = document.getElementById('gallery');
+const gallery = document.getElementById('gallery-canvas');
 const panel   = document.getElementById('pre-edit');
 const pose    = document.getElementById('pose');
 const pfilter = document.getElementById('pf');
+const edited  = document.getElementById('edited');
+const save    = document.getElementById('save-photo');
 
 navigator.mediaDevices.getUserMedia({video: true, audio: false})
   .then(function(stream){
@@ -43,17 +45,32 @@ navigator.mediaDevices.getUserMedia({video: true, audio: false})
       canvas.height = height;
       const context = canvas.getContext('2d');
       context.drawImage(video, 0, 0, width, height);
-      const imgUrl = canvas.toDataURL('image/png');
-      const img = document.createElement('img');
+      const imgUrl  = canvas.toDataURL('image/png');
+      const img     = document.createElement('img');
       img.setAttribute('src', imgUrl);
       panel.appendChild(img);
     }
   }
+function add_superpose(pose_id){
+  const pose    = document.getElementById(pose_id);
+  const context = gallery.getContext('2d');
+  context.drawImage(pose, 0, 0, 300, 150);
+  const finalImgUrl = gallery.toDataURL('image/png');
+  const finalImg = document.createElement('finalImg');
+  finalImg.setAttribute('src', finalImgUrl);
+  edited.appendChild(finalImg);
+  console.log(finalImgUrl);
+}
 
-  /* Uploading an image using jQuery */
-/*•••••••••••••••••••••••••••••••••••••••••••••••••
-            USER PROFILE SETTINGS
-••••••••••••••••••••••••••••••••••••••••••••••••••*/
+function save_photo(){
+  const finalImgUrl = gallery.toDataURL('image/png');
+  const finalImg = document.createElement('finalImg');
+  finalImg.setAttribute('src', finalImgUrl);
+  edited.appendChild(finalImg);
+  console.log('Tying to save a picture');
+}
+
+//User Profile Settings.
 function open_profile(evnt, tabname){
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent");
@@ -66,25 +83,4 @@ function open_profile(evnt, tabname){
     }
     document.getElementById(tabname).style.display = "block";
     evnt.currentTarget.className += " active";
-}
-
-function add_superpose(color){
- /*  video.style.filter = color;
-  pose.setAttribute("src", "./filters/bunny.png");
-  pose.setAttribute("width", "300");
-  pose.setAttribute("height", "300");
-  video.appendChild(pose);
-  console.log('Trying...'); */
-  if (width && height){
-    canvas.width  = width;
-    canvas.height = height;
-    pose.setAttribute("width", "300");
-    pose.setAttribute("height", "300");
-    const context = canvas.getContext('2d');
-    context.drawImage(pose, 0, 0, width, height);
-    const myPoseUrl = canvas.toDataURL('image/png');
-    const myPose = document.createElement('img');
-    myPose.setAttribute('src', myPoseUrl);
-    gallery.appendChild(myPose);
-  }
 }

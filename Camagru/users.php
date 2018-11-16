@@ -1,104 +1,134 @@
 <?php
     session_start();
-    include('config/database.php');
-    include('main_functions.php');
+    include('connection.php');
+    include('functions.php');
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST')
-    {
-        if (isset($_POST['login']))
-        {   $_SESSION['verified'] = true;
-            $username = $_POST['username'];
-            $email = $_POST['email'];
-            $password = $_POST['password'];
-            try
-            {
-                $user = $conn->prepare("SELECT * FROM `users` WHERE `username` = '$username' LIMIT 1");
-                $user->execute();
-            }
-            catch (Exception $exc)
-            {
-                echo "Error: ".$exc->getMessage();
-            }
-            $row = $user->fetch(PDO::FETCH_ASSOC);
-            $num = $user->rowCount();
-            $hash = $row['password'];
-            if ($num > 0)
-            {
-                if (password_verify($password, $hash))
-                {  
-                    $_SESSION['email'] = $row['email'];
-                    $_SESSION['username'] = $row['username'];
-                    $_SESSION['firstname'] = $row['firstname'];
-                    $_SESSION['lastname'] = $row['lastname'];
-                    $_SESSION['cellnumber'] = $row['cellnumber'];
-                    $_SESSION['loggedin'] = true;
-                    include('snap.php');
-                }
-                else
-                {
-                    $_SESSION['verified'] = false;
-                    header('Location: index.php');
-                }
-
-            }
-        }
-        elseif (isset($_POST['signup']))
-        {
-            $_SESSION['userexist'] == false;
-            $username = $_POST['username'];
-            $_SESSION['username'] = $username;
-            $email = $_POST['email'];
-            $firstname = $_POST['firstname'];
-            $lastname = $_POST['lastname'];
-            $password = $_POST['password'];
-
-            if (strlen($password) < 8)
-            {
-                header('Location: index.php');
-                $_SESSION['shortpassword'] = true;
-            }
-            elseif (!preg_match("#[0-9]+#", $password))
-            {
-                header('Location: index.php');
-                $_SESSION['nodigits'] = true;
-            }
-            elseif (!preg_match("#[a-zA-Z]+#", $password))
-            {
-                header('Location: index.php');
-                $_SESSION['nocases'] = true;
-            }
-            else
-            {
-                $password = password_hash($_POST['password'], PASSWORD_BCRYPT, array('cost' => 5));
-                $user = array($username, $email, $firstname, $lastname, $password);
-                sign_up($user, $conn);
-            }
-        }
-
-        if (isset($_POST['activation'])){
+    if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+        include_once('actions/signin.php');
+        include_once('actions/signup.php');
+        include_once('actions/account_activation.php');
+        include_once('actions/reactions.php');
+        include_once('actions/reset_password.php');
+        //Activating User's Account.
+        /* if (isset($_POST['activation'])){
             $username = $_SESSION['username'];
-            try
-            {
-                $user = $conn->prepare("UPDATE `users` SET `user_token` = 'Token Used, User Confirmed'
+            try{
+                $user = $conn->prepare("UPDATE `users` SET `verified` = 'Y'
                 WHERE username = '$username'");
                 $user->execute();
                 header('Location: index.php');
-            }
-            catch(PDOException $e)
-            {
+            }catch(PDOException $e){
                 echo "Error: ". $e->getMessage();
             }
-        }
+        } */
+        //Upload picture.
         if (isset($_POST['upload'])){
-            $image = $_FILES['image']['name'];
-            $target = getcwd().basename($image);
-           try{
-                $query = "INSERT INTO `images` (username, `image`) VALUES ('$username', '$image')";
+            $username = $_SESSION['username'];
+            try{
+                $file  = addslashes(file_get_contents($_FILES['image']['tmp_name']));
+                $query = $conn->prepare('INSERT INTO `images` (username, imagename)
+                VALUES ("'.$username.'", "'.$file.'")');
                 $query->execute();
-           }
-           catch(PDOException $e){
-               echo "Error: " . $e->getMessage();
-           }
+                //Inserting image ID and image name to respective tables.
+                $query = $conn->prepare('INSERT INTO `likes` (imagename)
+                VALUES ("'.$file.'")');
+                $query->execute();
+
+                $query = $conn->prepare('INSERT INTO `comments` (imagename)
+                VALUES ("'.$file.'")');
+                $query->execute();
+                
+            }catch(PDOException $e){
+                echo "Error: " . $e->getMessage();
+            }
         }
+        //Save photo.
+        if (isset($_POST['save-photo'])){
+            $username = $_SESSION['username'];
+            try{
+                $file  = addslashes(file_get_contents('img'));
+                $query = $conn->prepare('INSERT INTO `images` (username, imagename)
+                VALUES ("'.$username.'", "'.$file.'")');
+                $query->execute();
+            }catch(PDOException $e){
+                echo "Error: " . $e->getMessage();
+            }
+        }
+        if (isset($_POST['changepassword'])){
+            $username = $_SESSION['username'];
+            try{
+                $query = $conn->prepare("SELECT * FROM `users` WHERE `username` = '$username'");
+                $query->execute();
+            }catch(PDOException $e){
+                echo 'Error: '.$e->getMessage();
+            }
+            $row                     = $query->fetch(PDO::FETCH_ASSOC);
+            $uid                     = $row['token'];
+            $hash                    = $row['password'];
+            $email                   = $row['email'];
+            $_SESSION['newpassword'] = $_POST['newpassword'];
+            $_SESSION['oldpassword'] = $_POST['oldpassword'];
+
+            $old_password = $_SESSION['oldpassword'];
+            $new_password = $_SESSION['newpassword'];
+            if (password_verify($old_password, $hash)){
+
+                $subject = "Password change";
+                $url = "http://127.0.0.1:8080/cam/camagru/change_pwd.php?token=$uid";
+                $message = "You are about to change your password, please confirm $url";
+                mail($email, $subject, $message);
+                $_SESSION['pwdemail'] = true;
+                header('Location: user_profile.php');
+            }
+        }
+        //Confirm change of password.
+        if (isset($_POST['confirmation'])){
+
+            $username = $_SESSION['username'];
+            try{
+                $query = $conn->prepare("SELECT * FROM `users` WHERE `username` = '$username'");
+                $query->execute();
+            }catch(PDOException $e){
+                echo 'Error: '.$e->getMessage();
+            }
+
+            $row          = $query->fetch(PDO::FETCH_ASSOC);
+            $uid          = $row['token'];
+            $hash         = $row['password'];
+            $email        = $row['email'];
+            $old_password = $_SESSION['oldpassword'];
+            $new_password = $_SESSION['newpassword'];
+            $password     = password_hash($new_password, PASSWORD_BCRYPT, array('cost' => 5));
+            if (password_verify($old_password, $hash)){
+                try{
+                    $change_password = $conn->prepare("UPDATE `users` SET `password` = '$password'");
+                    $change_password->execute();
+                    $_SESSION['passwordchanged'] = true;
+                    header('Location: index.php');
+                }catch(PDOException $e){
+                    echo 'Error: '.$e->getMessage();
+                }
+            }
+        }
+
+        if (isset($_POST['edit-profile'])){
+            $email     = $_POST['email'];
+            $username  = $_POST['username'];
+            $lastname  = $_POST['lastname'];
+            $firstname = $_POST['firstname'];
+            $emailpref = $_GET['email-prefence'];
+            try{
+                $modify = $conn->prepare("UPDATE `users`/* (username, email, firstname, lastname, email_pref) */
+                SET `username` = '$username', `email` = '$email', `firstname` = '$firstname', `lastname` = '$lastname', `email_pref` = '$emailpref'");
+                $modify->execute();
+                echo $emailpref;
+            }catch(PDOException $e){
+                echo 'Error: '.$e->getMessage();
+            }
+        }
+
+       /*  if (isset($_POST['save-photo'])){
+            echo 'trying to save photo';
+        } */
     }
 ?>
