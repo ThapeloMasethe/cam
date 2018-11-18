@@ -13,7 +13,8 @@ const pfilter = document.getElementById('pf');
 const edited  = document.getElementById('edited');
 const save    = document.getElementById('save-photo');
 
-navigator.mediaDevices.getUserMedia({video: true, audio: false})
+if (video){
+  navigator.mediaDevices.getUserMedia({video: true, audio: false})
   .then(function(stream){
     video.srcObject = stream;
     video.play();
@@ -31,19 +32,25 @@ navigator.mediaDevices.getUserMedia({video: true, audio: false})
       canvas.setAttribute('width', width);
       canvas.setAttribute('height', height);
       streaming = true;
+      e.preventDefault();
     }
   }, false);
+}
 
+ if (photo){
   photo.addEventListener('click', function(e){
     take_photo();
     e.preventDefault();
   }, false);
+ }
 
   function take_photo(){
     if (width && height){
       canvas.width  = width;
       canvas.height = height;
       const context = canvas.getContext('2d');
+      const galleryContext = gallery.getContext('2d');
+      galleryContext.drawImage(video, 0, 0, 300, 150);
       context.drawImage(video, 0, 0, width, height);
       const imgUrl  = canvas.toDataURL('image/png');
       const img     = document.createElement('img');
@@ -53,21 +60,17 @@ navigator.mediaDevices.getUserMedia({video: true, audio: false})
   }
 function add_superpose(pose_id){
   const pose    = document.getElementById(pose_id);
-  const context = gallery.getContext('2d');
-  context.drawImage(pose, 0, 0, 300, 150);
-  const finalImgUrl = gallery.toDataURL('image/png');
-  const finalImg = document.createElement('finalImg');
-  finalImg.setAttribute('src', finalImgUrl);
-  edited.appendChild(finalImg);
-  console.log(finalImgUrl);
+  const context_pose = gallery.getContext('2d');
+  context_pose.drawImage(pose, 0, 0, 300, 150);
 }
 
 function save_photo(){
-  const finalImgUrl = gallery.toDataURL('image/png');
-  const finalImg = document.createElement('finalImg');
-  finalImg.setAttribute('src', finalImgUrl);
-  edited.appendChild(finalImg);
+  const imageUrl  = gallery.toDataURL('image/png');
+  const image     = document.createElement('img');
+  image.setAttribute('src', imageUrl);    
+  console.log(imageUrl);
   console.log('Tying to save a picture');
+  edited.appendChild(image);
 }
 
 //User Profile Settings.

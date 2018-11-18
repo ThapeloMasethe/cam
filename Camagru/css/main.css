@@ -13,10 +13,12 @@ body{
 header{
     background-color: azure;
     width: 100%;
-    height: 60px;
+    height: 10%;
     padding-top: 2px;
     margin-bottom: 1px;
     box-shadow: 5px 5px 8px grey;
+    overflow: auto;
+    position: relative;
 }
 
 
@@ -26,7 +28,7 @@ header{
 footer{
     background-color: azure;
     width: 100%;
-    height: 150px;
+    height: 15%;
     clear: both;
     text-align: center;
     padding: 5px 0 5px 0;
@@ -160,14 +162,22 @@ input[type=text], input[type=password], input[type=email]{
     margin-left: 25%;
     font-style: inherit;
 }
-#edited{
+.edited{
+    clear: both;
     margin-top: 7%;
     width: 100%;
-    height: 18%;
+    height: 200px;
+    margin: 2% 0 2% 0;
+    background-color: #f1f1f1;
+    box-shadow: 5px 5px 8px grey;
 }
 #edited img{
-    height: 100%;
-    width: 50%;
+    height: 80%;
+    width: 15%;
+    margin: 2% 2% 2% 2%;
+    border: 1px solid azure;
+    box-shadow: 5px 5px 8px grey;
+    overflow: hidden;
 }
 .filters-container img{
     height: 80px;
@@ -372,7 +382,6 @@ hr{
                 FORGOT PASSWORD
 ••••••••••••••••••••••••••••••••••••••••••••••••••••*/
 .forgot-password{
-    text-align: center;
     margin: 5% 25% 5% 25%;
     height: 600px;
     width: 50%;

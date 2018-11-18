@@ -26,8 +26,9 @@
                 <input  type="password" name="password" placeholder="password"  required>
                 <input  type="hidden"   name="login" value="login">
                 <button type="submit">LOGIN</button>
+                <a href="forgot_password.php">forgot password?</a>
             </form>
-            <a href="forgot_password.php">forgot password?</a>
+            
         </div>   
 </header>
     <div class="main-container">

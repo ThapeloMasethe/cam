@@ -18,7 +18,6 @@
         <form action="users.php" method="POST">
             <input type="hidden" name="activation" value="activation">
             <input type="submit"  name="activation" value="Activate">
-            <!-- <button class="photo">Activate</button> -->
         </form>
    </div>
     <?php include('./includes/footer.php'); ?>                                                                                                                                                                                                                              

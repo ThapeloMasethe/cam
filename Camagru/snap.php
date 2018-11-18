@@ -22,8 +22,10 @@
         <video  id="video"></video>
         <button id="photo">Take Photo</button>
         <form action="users.php"  method="POST" enctype="multipart/form-data">
-            <input  type="file"   name="image"  size="25" />
-            <input type="submit" value="Upload Image" name="upload">
+            <input  type="file"   name="image"  size="25"  class="login"/>
+            <!-- <input type="submit" value="Upload Image" name="upload"  class="login"> -->
+            <!-- <button type="submit" name="upload" class="login">Upload Image</button> -->
+            <input type="submit" value="Upload Image" name="upload"  class="login">
         </form>
         <canvas id="canvas" ></canvas>
     </div>
@@ -41,12 +43,11 @@
         </div>
         <div class="edit-panel" id="edit-panel">
             <div id="pre-edit"></div>
-            <form>
             <input id="upload-photo" type="submit" value="Save Your Photo" name="save-photo" onclick="save_photo()">
         </div>
         <canvas id="gallery-canvas"></canvas>
-        <div id="edited"></div>
     </div>
+    <div id="edited" class="edited"></div>
     <?php include('./includes/footer.php'); ?>
     <script src="./js/main.js"></script>
     <script

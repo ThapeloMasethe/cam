@@ -30,20 +30,20 @@
                 VALUES ("'.$username.'", "'.$file.'")');
                 $query->execute();
                 //Inserting image ID and image name to respective tables.
-                $query = $conn->prepare('INSERT INTO `likes` (imagename)
+               /*  $query = $conn->prepare('INSERT INTO `likes` (imagename)
                 VALUES ("'.$file.'")');
-                $query->execute();
+                $query->execute(); */
 
-                $query = $conn->prepare('INSERT INTO `comments` (imagename)
+               /*  $query = $conn->prepare('INSERT INTO `comments` (imagename)
                 VALUES ("'.$file.'")');
-                $query->execute();
+                $query->execute(); */
                 
             }catch(PDOException $e){
                 echo "Error: " . $e->getMessage();
             }
         }
         //Save photo.
-        if (isset($_POST['save-photo'])){
+       /*  if (isset($_POST['save-photo'])){
             $username = $_SESSION['username'];
             try{
                 $file  = addslashes(file_get_contents('img'));
@@ -53,7 +53,7 @@
             }catch(PDOException $e){
                 echo "Error: " . $e->getMessage();
             }
-        }
+        } */
         if (isset($_POST['changepassword'])){
             $username = $_SESSION['username'];
             try{
@@ -81,36 +81,6 @@
                 header('Location: user_profile.php');
             }
         }
-        //Confirm change of password.
-        if (isset($_POST['confirmation'])){
-
-            $username = $_SESSION['username'];
-            try{
-                $query = $conn->prepare("SELECT * FROM `users` WHERE `username` = '$username'");
-                $query->execute();
-            }catch(PDOException $e){
-                echo 'Error: '.$e->getMessage();
-            }
-
-            $row          = $query->fetch(PDO::FETCH_ASSOC);
-            $uid          = $row['token'];
-            $hash         = $row['password'];
-            $email        = $row['email'];
-            $old_password = $_SESSION['oldpassword'];
-            $new_password = $_SESSION['newpassword'];
-            $password     = password_hash($new_password, PASSWORD_BCRYPT, array('cost' => 5));
-            if (password_verify($old_password, $hash)){
-                try{
-                    $change_password = $conn->prepare("UPDATE `users` SET `password` = '$password'");
-                    $change_password->execute();
-                    $_SESSION['passwordchanged'] = true;
-                    header('Location: index.php');
-                }catch(PDOException $e){
-                    echo 'Error: '.$e->getMessage();
-                }
-            }
-        }
-
         if (isset($_POST['edit-profile'])){
             $email     = $_POST['email'];
             $username  = $_POST['username'];
