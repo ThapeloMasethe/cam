@@ -96,9 +96,18 @@
                 echo 'Error: '.$e->getMessage();
             }
         }
+        if (isset($_POST['take-photo'])){
+            echo 'Im trying to mxm eish';
+            header('Location: index.php');
+        }
 
        /*  if (isset($_POST['save-photo'])){
             echo 'trying to save photo';
         } */
     }
+  /*   else if ($_SERVER['REQUEST_METHOD'] === 'GET'){
+        if (isset($_GET['take-photo'])){
+            echo 'takeing photo';
+        }
+    } */
 ?>

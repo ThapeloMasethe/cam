@@ -46,7 +46,6 @@
             `likeid`            INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
             `username`          VARCHAR(150),
             `imageid`           INT,
-            `imagename`         LONGBLOB,
             `date`              TIMESTAMP
         )");
         $query->execute();
@@ -57,7 +56,6 @@
             `commentid`         INT PRIMARY  KEY NOT NULL AUTO_INCREMENT,
             `username`          VARCHAR(100) NOT NULL,
             `imageid`           INT,
-            `imagename`         LONGBLOB,
             `comment`           VARCHAR(1500),
             `comment_date`      TIMESTAMP
         )");
@@ -67,30 +65,5 @@
     catch (PDOException $ex){
         echo "Error: " . $ex->getMessage();
     }
-    /* try{
-        $conn = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $query = $conn->prepare("CREATE TABLE IF NOT EXISTS `images` (
-            `username` VARCHAR(45) NOT NULL,
-            `image` VARCHAR(1000),
-            `date` TIMESTAMP 
-        )");
-        $query->execute();
-    }
-    catch(PDOException $e){
-        echo "Error: " . $e->getMessage();
-    } */
     $conn = null;
-    /* function connect_database()
-    {
-        try
-        {
-            $conn = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
-            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        }
-        catch (PDOException $exc)
-        {
-            echo "Connection failed: ".$exc->getMessage();
-        }
-    } */
 ?>

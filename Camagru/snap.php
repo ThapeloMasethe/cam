@@ -20,12 +20,15 @@
     </header>
     <div class="video-container">
         <video  id="video"></video>
-        <button id="photo">Take Photo</button>
+        <form action="users.php"  method="POST">
+            <input type="submit" id="photo" name="take-photo" value="Take Photo1">
+            <!-- <button type="submit" id="photo" name="take-photo">Take Photo</button> -->
+        </form>
         <form action="users.php"  method="POST" enctype="multipart/form-data">
-            <input  type="file"   name="image"  size="25"  class="login"/>
-            <!-- <input type="submit" value="Upload Image" name="upload"  class="login"> -->
+            <input type="file"   name="image"  size="25"  class="login"/>
+            <!-- <input type="su`bmit" value="Upload Image" name="upload"  class="login"> -->
             <!-- <button type="submit" name="upload" class="login">Upload Image</button> -->
-            <input type="submit" value="Upload Image" name="upload"  class="login">
+            <input class="upload-photo" type="submit" value="Upload Image" name="upload"  class="login">
         </form>
         <canvas id="canvas" ></canvas>
     </div>
@@ -43,9 +46,10 @@
         </div>
         <div class="edit-panel" id="edit-panel">
             <div id="pre-edit"></div>
-            <input id="upload-photo" type="submit" value="Save Your Photo" name="save-photo" onclick="save_photo()">
+            <!-- <input id="upload-photo" type="submit" value="Save Your Photo" name="save-photo" onclick="save_photo()"> -->
         </div>
         <canvas id="gallery-canvas"></canvas>
+        <input id="upload-photo" type="submit" value="Save Your Photo" name="save-photo" onclick="save_photo()">
     </div>
     <div id="edited" class="edited"></div>
     <?php include('./includes/footer.php'); ?>

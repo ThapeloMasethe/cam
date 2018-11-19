@@ -7,7 +7,6 @@
     <title>Camagru</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="./css/main.css" />
-    <script src="main.js"></script>
 </head>
 <body>
     <header>
@@ -41,7 +40,7 @@
             <label for="no">No</label>
             <input type="hidden"   value="editprofile" name="editprofile"  ><br>
             <br>
-            <input type="submit"   value="Submit"      name="edit-profile" id="upload-photo">
+            <input type="submit"   value="Submit"      name="edit-profile" class="upload-photo">
         </form>
     </div>
 
@@ -49,11 +48,11 @@
         <h3>Hi <?php echo $_SESSION['firstname']." ".$_SESSION['lastname']; ?>, Change your password.</h3>
         <form action="users.php"    class="user-profile"   method="POST">
             <p>Old Password</p>     <input type="password" name="oldpassword">
-            <p>New Password</p>     <input type="password" name="newpassword">
-            <p>Confirm Password</p> <input type="password" name="confirmpassword">
+            <p>New Password</p>     <input type="password" name="newpassword"       id="newpassword">
+            <p>Confirm Password</p> <input type="password" name="confirmpassword"   id="confirm-newpassword">
             <input type="hidden" name="changepassword" value="ok">
             <br><br>
-            <input type="submit" value="Submit" name="changepassword" id="upload-photo">
+            <input type="submit" value="Submit" name="changepassword" class="upload-photo">
         </form>
     </div>
     <?php include('./includes/footer.php'); ?>

@@ -29,50 +29,39 @@
             sign_up($user, $conn);
         }
     }
-    function sign_up($user, $conn)
-    {
-        try
-        {
+    function sign_up($user, $conn){
+        try{
             $check = $conn->prepare('SELECT * FROM users WHERE email="' . $user[1] . '"');
             $check->execute();
-            header('Location: user_default.php');
         }
-        catch (Exception $exc)
-        {
+        catch (Exception $exc){
             echo "Error: ".$exc->getMessage();
         }
         $num = $check->rowCount();
-        if ($num > 0)
-        {
+        if ($num > 0){
             $_SESSION['userexist'] = true;
             header('Location: index.php');
         }
-        else
-        {
-            try
-            {
+        else{
+            try{
                 $add = $conn->prepare('INSERT INTO users(username, email, firstname, lastname, password)
                 VALUES("' . $user[0] . '","' . $user[1] . '","' . $user[2] . '", "' . $user[3] . '", "' . $user[4] . '")');
                 $add->execute();
             }
-            catch (Exception $e)
-            {
+            catch (Exception $e){
                 echo "SQL not performed! Error: ". $e->getMessage();
             }
-            // GENERATE UNIQUE ID FOR USER
+            //Generate unique token.
             $uid = md5(uniqid($user[0]));
-            try
-            {
-                /* $add = $conn->prepare('INSERT INTO users(user_token)
-                VALUES("'. $uid .'")');
-                $add->execute(); */
+            try{
                 $update = $conn->prepare("UPDATE `users` SET `user_token` = '$uid'
                 WHERE username = '$user[0]'");
                 $update->execute(); 
                 send_mail($user[1], $uid);
+                $_SESSION['registered'] = true;
+                header('Location: index.php');
             }
-            catch(PDOException $e)
-            {
+            catch(PDOException $e){
                 echo "Error: " . $e->getMessage();
             }
             die();

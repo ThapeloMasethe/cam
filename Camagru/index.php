@@ -1,6 +1,3 @@
-<?php 
-    session_start();
-?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,6 +44,39 @@
             <input  type="hidden"  name="signup"    value="signup"> <br>
             <button type="submit"  name="submit"    class="user-button">SIGNUP</button> <br>
         </form>
+        <?php
+            session_start();
+            if ($_SESSION['registered'] == true){
+                echo '<div class="success">
+                        <strong>SUCCESS!</strong> You are successfully registered, check your email to verify.
+                    </div>';
+                $_SESSION['registered'] = false;
+            }
+            if ($_SESSION['userexist'] == true){
+                echo '<div class="alert" color="red">
+                        <strong>ERROR!</strong> Username or Email already exists, Please try another.
+                    </div>';
+                $_SESSION['userexist'] = false;
+            }
+            if ($_SESSION['shortpassword'] == true){
+                echo '<div class="alert" color="red">
+                        <strong>ERROR!</strong> Your password is too short, enter atleast 8 characters.
+                    </div>';
+                    $_SESSION['shortpassword'] = false;
+            }
+            if ($_SESSION['nodigits'] == true){
+                echo '<div class="alert" color="red">
+                        <strong>ERROR!</strong> Your password should contain atleast 1 digit.
+                    </div>';
+            $_SESSION['nodigits'] = false;
+            }
+            if ($_SESSION['nocases'] == true){
+                echo '<div class="alert" color="red">
+                        <strong>ERROR!</strong> Your password should contain atleast 1 Uppercase and Lowercase.
+                    </div>';
+                $_SESSION['nocases'] = false;
+            }
+         ?>
     </div>
     <?php include('./includes/footer.php'); ?>
     <script src="./js/main.js"></script>

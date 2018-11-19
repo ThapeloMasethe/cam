@@ -223,6 +223,18 @@ input[type=text], input[type=password], input[type=email]{
     border: 1px solid azure;
     font-size: 16px;
 }
+.upload-photo{
+    width: 50%;
+    height: 8%;
+    margin-bottom: 1%;
+    background-color: azure;
+    border: 1px solid azure;
+    font-size: 16px;
+}
+.upload-photo:hover{
+    border: 1px solid azure;
+    box-shadow: 5px 5px 8px grey;
+}
 #photo:hover, #upload-photo:hover{
     /* background-color: antiquewhite; */
     border: 1px solid azure;
@@ -382,9 +394,26 @@ hr{
                 FORGOT PASSWORD
 ••••••••••••••••••••••••••••••••••••••••••••••••••••*/
 .forgot-password{
+    padding: 2%;
     margin: 5% 25% 5% 25%;
     height: 600px;
     width: 50%;
     background-color: #f1f1f1;
+    box-shadow: 5px 5px 8px grey;
+}
+.alert{
+    color: white;
+    background-color: red;
+    width: 80%;
+    height: 11%;
+    margin: 5% 9% 0 9%;
+    box-shadow: 5px 5px 8px grey;
+}
+.success{
+    color: white;
+    background-color: green;
+    width: 80%;
+    height: 11%;
+    margin: 5% 9% 0 9%;
     box-shadow: 5px 5px 8px grey;
 }

@@ -2,7 +2,7 @@
     session_start();
     include_once('connection.php');
     
-    //Confirm change of password.
+    //Change of password.
     if (isset($_POST['confirmation'])){
         $username = $_SESSION['username'];
         try{
@@ -29,6 +29,7 @@
             }
         }
     }
+    //Forgot password.
     if (isset($_POST['reset-password'])){
         $method = $_POST['reset-method'];
         try{
@@ -36,13 +37,12 @@
             WHERE `username` = '$method' OR `email` = '$method'");
             $_SESSION['isreset'] = false;
             $query->execute();
-            /* header('Location: forgot_password.php'); */
-            /* echo $_SESSION['isreset']; */
         }catch(PDOException $e){
             echo 'Error: '.$e->getMessage();
         }
-        $reset_email = $query->fetch(PDO::FETCH_ASSOC);
-        $re          = $reset_email['email'];
+        $reset_email       = $query->fetch(PDO::FETCH_ASSOC);
+        $re                = $reset_email['email'];
+        $_SESSION['email'] = $reset_email['email']; 
         try{
             $query = $conn->prepare("SELECT `user_token` FROM `users`
             WHERE `email` = '$re'");
@@ -53,19 +53,22 @@
         $uid     = $query->fetch(PDO::FETCH_ASSOC);
         $token   = $uid['user_token'];
         $subject = "Forgot Password";
-        $url     = "http://127.0.0.1:8080/cam/camagru/forgot_password.php?token=$token";
+        $url     = "http://127.0.0.1:8080/cam/camagru/reset_password.php?token=$token";
         $message = "Please click the link below to reset your Camagru password $url";
         mail($re, $subject, $message);
-        header('Location: forgot_password.php');
+        header('Location: index.php');
     }
     if (isset($_POST['reset-new'])){
-     /*    try{
-            $query = $conn->prepare("SELECT * FROM `users` WHERE `email` = '$username'");
+        $mail     = $_SESSION['email'];
+        $password = password_hash($_POST['new-password'], PASSWORD_BCRYPT, array('cost' => 5));
+        try{
+            $query = $conn->prepare("UPDATE `users` SET `password` = '$password'
+            WHERE `email` = '$mail'");
             $query->execute();
+            header('Location: index.php');
+            $_SESSION['isreset'] = true;
         }catch(PDOException $e){
             echo 'Error: '.$e->getMessage();
-        } */
-        echo 'im here';
-        echo $_GET['token'];
+        }
     }
 ?>

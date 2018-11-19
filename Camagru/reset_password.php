@@ -18,12 +18,12 @@
     </header>
     <div class="forgot-password user-container">
         <?php
-            echo '<h3>Reset Your Password</h3>
-                    <form action="users.php" method="POST">
-                        <p>We can help you reset your password using your Camagru username or the email address linked to your account.</p>
-                        <input type="text" name="reset-method" placeholder="Enter Email or Username" required><br>
-                        <button type="submit" name="reset-password" class="login">Reset Password</button>
-                    </form>';
+            echo '<form action="users.php" method="POST">
+                    <p>Reset Your Password.</p>
+                    <input type="password" name="new-password" placeholder="New Password"    id="reset-password" required><br>
+                    <input type="password" name="confirm-new" placeholder="Confirm Password" id="reset-confirm"  required><br>
+                    <button type="submit" name="reset-new" class="login">Reset Password</button>
+                </form>';
          ?>
     </div>
     <?php include('footer.php');?>

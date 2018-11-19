@@ -13,6 +13,13 @@ const pfilter = document.getElementById('pf');
 const edited  = document.getElementById('edited');
 const save    = document.getElementById('save-photo');
 
+var signup_password = document.getElementById('password');
+var signup_confirm  = document.getElementById('confirm-password');
+var prof_password   = document.getElementById('newpassword');
+var prof_confirm    = document.getElementById('confirm-newpassword');
+var reset_password  = document.getElementById('reset-password');
+var reset_confirm   = document.getElementById('reset-confirm');
+
 if (video){
   navigator.mediaDevices.getUserMedia({video: true, audio: false})
   .then(function(stream){
@@ -51,13 +58,14 @@ if (video){
       const context = canvas.getContext('2d');
       const galleryContext = gallery.getContext('2d');
       galleryContext.drawImage(video, 0, 0, 300, 150);
-      context.drawImage(video, 0, 0, width, height);
+      /* context.drawImage(video, 0, 0, width, height); */
       const imgUrl  = canvas.toDataURL('image/png');
       const img     = document.createElement('img');
       img.setAttribute('src', imgUrl);
-      panel.appendChild(img);
+      /* panel.appendChild(img); */
     }
   }
+
 function add_superpose(pose_id){
   const pose    = document.getElementById(pose_id);
   const context_pose = gallery.getContext('2d');
@@ -73,7 +81,17 @@ function save_photo(){
   edited.appendChild(image);
 }
 
-//User Profile Settings.
+function validate_password(password, confirm){
+  if (password != confirm){
+    confirm.setCustomValidity("Password do not match!");
+    console.log(password);
+  }
+  else{
+    confirm.setCustomValidity('');
+    console.log(confirm);
+  }
+}
+
 function open_profile(evnt, tabname){
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent");
@@ -86,4 +104,17 @@ function open_profile(evnt, tabname){
     }
     document.getElementById(tabname).style.display = "block";
     evnt.currentTarget.className += " active";
+}
+
+if (signup_confirm && signup_password){
+  signup_password.onchange = validate_password(signup_password, signup_confirm);
+  signup_confirm.onkeyup   = validate_password(signup_password, signup_confirm);
+}
+if (prof_confirm && prof_password){
+  prof_password.onchange = validate_password(prof_password, prof_confirm);
+  prof_confirm.onkeyup   = validate_password(prof_password, prof_confirm);
+}
+if (reset_confirm && reset_password){
+  reset_password.onchange = validate_password(reset_password, reset_confirm);
+  reset_confirm.onkeyup   = validate_password(reset_password, reset_confirm);
 }
