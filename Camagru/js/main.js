@@ -19,6 +19,8 @@ var prof_password   = document.getElementById('newpassword');
 var prof_confirm    = document.getElementById('confirm-newpassword');
 var reset_password  = document.getElementById('reset-password');
 var reset_confirm   = document.getElementById('reset-confirm');
+var upload_image   = document.getElementById('upload-image');
+var img_u   = document.getElementById('img-u');
 
 if (video){
   navigator.mediaDevices.getUserMedia({video: true, audio: false})
@@ -43,14 +45,12 @@ if (video){
     }
   }, false);
 }
-
- if (photo){
+if (photo){
   photo.addEventListener('click', function(e){
     take_photo();
     e.preventDefault();
   }, false);
- }
-
+}
   function take_photo(){
     if (width && height){
       canvas.width  = width;
@@ -58,11 +58,9 @@ if (video){
       const context = canvas.getContext('2d');
       const galleryContext = gallery.getContext('2d');
       galleryContext.drawImage(video, 0, 0, 300, 150);
-      /* context.drawImage(video, 0, 0, width, height); */
       const imgUrl  = canvas.toDataURL('image/png');
       const img     = document.createElement('img');
       img.setAttribute('src', imgUrl);
-      /* panel.appendChild(img); */
     }
   }
 
@@ -75,20 +73,19 @@ function add_superpose(pose_id){
 function save_photo(){
   const imageUrl  = gallery.toDataURL('image/png');
   const image     = document.createElement('img');
-  image.setAttribute('src', imageUrl);    
-  console.log(imageUrl);
-  console.log('Tying to save a picture');
+  image.setAttribute('name', 'image1'); 
+  image.setAttribute('src', imageUrl);
+  document.getElementById('snap').value = imageUrl;
+  console.log(document.getElementById('snap').value);
   edited.appendChild(image);
 }
 
 function validate_password(password, confirm){
   if (password != confirm){
     confirm.setCustomValidity("Password do not match!");
-    console.log(password);
   }
   else{
     confirm.setCustomValidity('');
-    console.log(confirm);
   }
 }
 

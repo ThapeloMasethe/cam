@@ -9,51 +9,8 @@
         include_once('actions/account_activation.php');
         include_once('actions/reactions.php');
         include_once('actions/reset_password.php');
-        //Activating User's Account.
-        /* if (isset($_POST['activation'])){
-            $username = $_SESSION['username'];
-            try{
-                $user = $conn->prepare("UPDATE `users` SET `verified` = 'Y'
-                WHERE username = '$username'");
-                $user->execute();
-                header('Location: index.php');
-            }catch(PDOException $e){
-                echo "Error: ". $e->getMessage();
-            }
-        } */
-        //Upload picture.
-        if (isset($_POST['upload'])){
-            $username = $_SESSION['username'];
-            try{
-                $file  = addslashes(file_get_contents($_FILES['image']['tmp_name']));
-                $query = $conn->prepare('INSERT INTO `images` (username, imagename)
-                VALUES ("'.$username.'", "'.$file.'")');
-                $query->execute();
-                //Inserting image ID and image name to respective tables.
-               /*  $query = $conn->prepare('INSERT INTO `likes` (imagename)
-                VALUES ("'.$file.'")');
-                $query->execute(); */
+        include_once('actions/pictures.php');
 
-               /*  $query = $conn->prepare('INSERT INTO `comments` (imagename)
-                VALUES ("'.$file.'")');
-                $query->execute(); */
-                
-            }catch(PDOException $e){
-                echo "Error: " . $e->getMessage();
-            }
-        }
-        //Save photo.
-       /*  if (isset($_POST['save-photo'])){
-            $username = $_SESSION['username'];
-            try{
-                $file  = addslashes(file_get_contents('img'));
-                $query = $conn->prepare('INSERT INTO `images` (username, imagename)
-                VALUES ("'.$username.'", "'.$file.'")');
-                $query->execute();
-            }catch(PDOException $e){
-                echo "Error: " . $e->getMessage();
-            }
-        } */
         if (isset($_POST['changepassword'])){
             $username = $_SESSION['username'];
             try{
@@ -96,18 +53,15 @@
                 echo 'Error: '.$e->getMessage();
             }
         }
-        if (isset($_POST['take-photo'])){
-            echo 'Im trying to mxm eish';
-            header('Location: index.php');
+        if (isset($_POST['delete-post'])){
+            $imgid = $_POST['imageid'];
+            try{
+                $query = $conn->prepare("DELETE FROM `images` WHERE `imageid` = '$imgid'");
+                $query->ececute();
+                header('Location: gallery.php');
+            }catch(PDOException $e){
+                echo 'Error: '.$e->getMessage();
+            }
         }
-
-       /*  if (isset($_POST['save-photo'])){
-            echo 'trying to save photo';
-        } */
     }
-  /*   else if ($_SERVER['REQUEST_METHOD'] === 'GET'){
-        if (isset($_GET['take-photo'])){
-            echo 'takeing photo';
-        }
-    } */
 ?>

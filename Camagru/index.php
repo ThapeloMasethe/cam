@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" media="screen" href="./css/main.css" />
 </head>
 <body>
+    <div class="container">
     <header>
         <div id="logo">
             <h4 id="title"><a href="#">Camagru</a></h4>
@@ -80,5 +81,6 @@
     </div>
     <?php include('./includes/footer.php'); ?>
     <script src="./js/main.js"></script>
+    </div>
 </body>
 </html>

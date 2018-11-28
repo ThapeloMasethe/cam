@@ -21,7 +21,6 @@
         }catch(PDOException $e){
             echo 'Error: '.$e->getMessage();
         }
-        /* print_r($query->rowCount()); */
         if ($query->rowCount() < 1){
             try{
                 $like = $conn->prepare('INSERT INTO `likes` (username, imageid)
@@ -31,8 +30,7 @@
             }catch(PDOException $e){
                 echo "Error: ".$e->getMessage();
             }
-        }
-        else if ($query->rowCount() >= 1){
+        }else if ($query->rowCount() >= 1){
             try{
                 $like = $conn->prepare("DELETE FROM `likes`
                 WHERE '$usr' = `username` AND '$imgid' = `imageid`");

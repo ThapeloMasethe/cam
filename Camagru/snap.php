@@ -21,15 +21,27 @@
     <div class="video-container">
         <video  id="video"></video>
         <form action="users.php"  method="POST">
-            <input type="submit" id="photo" name="take-photo" value="Take Photo1">
-            <!-- <button type="submit" id="photo" name="take-photo">Take Photo</button> -->
+            <input type="submit" id="photo" name="take-photo" value="Take Photo">
         </form>
         <form action="users.php"  method="POST" enctype="multipart/form-data">
             <input type="file"   name="image"  size="25"  class="login"/>
-            <!-- <input type="su`bmit" value="Upload Image" name="upload"  class="login"> -->
-            <!-- <button type="submit" name="upload" class="login">Upload Image</button> -->
-            <input class="upload-photo" type="submit" value="Upload Image" name="upload"  class="login">
+            <input class="upload-photo" type="submit" value="Upload Image" name="upload"  class="login" id="upload-image">
         </form>
+        <?php
+            session_start();
+            if ($_SESSION['wrongextension'] == true){
+                echo '<div class="alert" color="red">
+                        <strong>ERROR!</strong>The file you selected is not an image.
+                    </div>';
+                $_SESSION['wrongextension'] = false;
+            }
+            if ($_SESSION['imgupload'] == true){
+                echo '<div class="alert" color="red">
+                        <strong>ERROR!</strong>The file you selected is not an image.
+                    </div>';
+                $_SESSION['imgupload'] = false;
+            }
+         ?>
         <canvas id="canvas" ></canvas>
     </div>
 
@@ -45,13 +57,34 @@
             <div class="filters"><img id="pose6" src="./filters/vector.png"    onclick="add_superpose(id)"  alt=""></div>
         </div>
         <div class="edit-panel" id="edit-panel">
-            <div id="pre-edit"></div>
-            <!-- <input id="upload-photo" type="submit" value="Save Your Photo" name="save-photo" onclick="save_photo()"> -->
+            <form action="users.php" method="POST">
+                <div id="pre-edit"></div>
+            </form>
         </div>
         <canvas id="gallery-canvas"></canvas>
-        <input id="upload-photo" type="submit" value="Save Your Photo" name="save-photo" onclick="save_photo()">
+        <form action="users.php" method="POST">
+            <input type="hidden" id="snap" name="snap">
+            <input id="upload-photo" type="submit" value="Save Your Photo" name="save-photo" onclick="save_photo()">
+        </form>
     </div>
-    <div id="edited" class="edited"></div>
+    <div id="edited" class="edited">
+            <?php
+                session_start();
+                if ($_SESSION['imgsaved'] == true){
+                    echo '<div class="success">
+                            <strong>SUCCESS!</strong> You picture is saved.
+                        </div>';
+                    $_SESSION['imgsaved'] = false;
+                }
+            
+                if ($_SESSION['imguploaded'] == true){
+                    echo '<div class="success">
+                            <strong>SUCCESS!</strong> You picture is successfully uploaded.
+                        </div>';
+                    $_SESSION['imguploaded'] = false;
+            }
+            ?>
+    </div>
     <?php include('./includes/footer.php'); ?>
     <script src="./js/main.js"></script>
     <script

@@ -13,27 +13,47 @@
         <div>
             <ul id="gal">
                 <li><a href="index.php">SignIn/SignUp</a></li>
-                <!-- <li><a href="user_profile.php">Profile</a></li>
-                <li><a href="index.php" id="logout">Logout</a></li> -->
             </ul>
         </div>
     </header>
     <div class="gallery-container">
         <?php
-            session_start();
-            include_once('connection.php');
-                    /* include_once('./config/database.php'); */
-            try{
-                $query = $conn->prepare('SELECT * FROM `images` ORDER BY DATE DESC');
-                $query->execute();
-                while($row = $query->fetch(PDO::FETCH_ASSOC)){
-                    echo '<div class="pagination">
-                            <p><strong>'.$row['username'].'</strong> posted a photo. </p>
-                            <img src="data:image/jpeg;base64,'.base64_encode($row['imagename'] ).'" height="200" width="200" class="img-thumnail" />
-                        </div>';
-                    }
-            }catch(PDOException $e){
-                echo 'Error: '. $e->getMessage();
+             session_start();
+             include_once('connection.php');
+         
+             $images_per_page = 5;
+             try{
+                 $query = $conn->prepare("SELECT * FROM `images`");
+                 $query->execute();
+                }catch(PDOException $e){
+                    echo 'Error: '.$e->getMessage();
+                }
+            $number_of_images = $query->rowCount();
+            $number_of_pages  = ceil($number_of_images / $images_per_page);
+         
+             if (!isset($_GET['page'])) {
+                 $page = 1;
+             }else {
+                 $page = $_GET['page'];
+             }
+             $first_pages = ($page - 1) * $images_per_page;
+             try{
+                 $query = $conn->prepare("SELECT * FROM `images` LIMIT $first_pages , $images_per_page");
+                 $query->execute();
+             }catch(PDOException $e){
+                 echo 'Error: '.$e->getMessage();
+             }
+             while($row = $query->fetch(PDO::FETCH_ASSOC)){
+                 echo '<div class="pagination">
+                         <strong>'.$row['username'].'</strong> posted a photo.';
+                         if ($row['type'] == 'uploaded'){
+                            echo '<img src="data:image/jpeg;base64,'.base64_encode($row['imagename'] ).'" height="200" width="200" class="img-thumnail" />';
+                         }else if ($row['type'] == 'snapped'){
+                            echo '<img src="'.($row['imagename']).'" height="200" width="200" class="img-thumnail" />';
+                         }
+            }
+             for ($page=1;$page<=$number_of_pages;$page++) {
+                 echo '<a class="pages" href="public_gallery.php?page=' . $page . '">' . $page . '</a> ';
             }
         ?>
     </div>

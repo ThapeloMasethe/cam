@@ -14,7 +14,7 @@
             <ul id="gal">
                 <li><a href="snap.php">Snap</a></li>
                 <li><a href="user_profile.php">Profile</a></li>
-                <li><a href="index.php" id="logout">Logout</a></li>
+                <li><a href="logout.php" id="logout">Logout</a></li>
             </ul>
         </div>
     </header>

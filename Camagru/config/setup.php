@@ -1,7 +1,6 @@
 <?php
     require_once('database.php');
-
-    // CREATE DATABASE.
+    //Create database. 
     try{
         $conn = new PDO("mysql:host=$DB_SERVER", $DB_USER, $DB_PASSWORD);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -11,8 +10,7 @@
     }catch (PDOException $exc){
         echo "Error:".$exc->getMessage();
     }
-
-    // CREATE TABLES
+    //Create tables.
     try{
         //User Table.
         $conn = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
@@ -30,19 +28,18 @@
             )");
         $query->execute();
         echo "USERS TABLE CREATED.<br>";
-        
         //Images Table.
         $query = $conn->prepare("CREATE TABLE IF NOT EXISTS `images` (
             `imageid`           INT PRIMARY  KEY NOT NULL AUTO_INCREMENT,
             `username`          VARCHAR (45),
-            `imagename`         LONGBLOB     NOT NULL,
-            `date`              TIMESTAMP
+            `imagename`         LONGBLOB,
+            `date`              TIMESTAMP,
+            `type`              VARCHAR(10)
         )");
         $query->execute();
         echo "IMAGES TABLE CREATED.<br>";
-
-         //Likes Table.
-         $query = $conn->prepare("CREATE TABLE IF NOT EXISTS `likes` (
+        //Likes Table.
+        $query = $conn->prepare("CREATE TABLE IF NOT EXISTS `likes` (
             `likeid`            INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
             `username`          VARCHAR(150),
             `imageid`           INT,
@@ -50,7 +47,6 @@
         )");
         $query->execute();
         echo "Likes TABLE CREATED.<br>";
-
         //Comments Table.
         $query = $conn->prepare("CREATE TABLE IF NOT EXISTS `comments` (
             `commentid`         INT PRIMARY  KEY NOT NULL AUTO_INCREMENT,
