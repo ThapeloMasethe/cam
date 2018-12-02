@@ -10,8 +10,9 @@
         include_once('actions/reactions.php');
         include_once('actions/reset_password.php');
         include_once('actions/pictures.php');
+        include_once('actions/edit_profile.php');
 
-        if (isset($_POST['changepassword'])){
+        /* if (isset($_POST['changepassword'])){
             $username = $_SESSION['username'];
             try{
                 $query = $conn->prepare("SELECT * FROM `users` WHERE `username` = '$username'");
@@ -43,25 +44,33 @@
             $username  = $_POST['username'];
             $lastname  = $_POST['lastname'];
             $firstname = $_POST['firstname'];
-            $emailpref = $_GET['email-prefence'];
+            $emailpref = $_POST['email-preference'];
+            echo "this is my pref".$emailpref;
             try{
-                $modify = $conn->prepare("UPDATE `users`/* (username, email, firstname, lastname, email_pref) */
-                SET `username` = '$username', `email` = '$email', `firstname` = '$firstname', `lastname` = '$lastname', `email_pref` = '$emailpref'");
+                $modify = $conn->prepare("UPDATE `users`
+                SET `username` = '$username', `email` = '$email', `firstname` = '$firstname', `lastname` = '$lastname', `email_pref` = '$emailpref'
+                WHERE `username` = '".$_SESSION['username']."'");
                 $modify->execute();
-                echo $emailpref;
+                header('Location: user_profile.php');
             }catch(PDOException $e){
                 echo 'Error: '.$e->getMessage();
             }
-        }
-        if (isset($_POST['delete-post'])){
+        } */
+        /* if (isset($_POST['delete-post'])){
             $imgid = $_POST['imageid'];
             try{
                 $query = $conn->prepare("DELETE FROM `images` WHERE `imageid` = '$imgid'");
-                $query->ececute();
+                $query->execute();
+
+                $query = $conn->prepare("DELETE FROM `likes` WHERE `imageid` = '$imgid'");
+                $query->execute();
+
+                $query = $conn->prepare("DELETE FROM `comments` WHERE `imageid` = '$imgid'");
+                $query->execute();
                 header('Location: gallery.php');
             }catch(PDOException $e){
                 echo 'Error: '.$e->getMessage();
             }
-        }
+        } */
     }
 ?>

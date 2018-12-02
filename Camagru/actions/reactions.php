@@ -6,10 +6,24 @@
             $query = $conn->prepare('INSERT INTO `comments` (username, imageid, comment)
             VALUES ("'.$_SESSION['username'].'", "'.$_POST['imageid'].'", "'.$_POST['comment-box'].'")');
             $query->execute();
+            try{
+                $query = $conn->prepare('SELECT * FROM `users`
+                WHERE "'.$_SESSION['username'].'" = `username` ');
+                $query->execute();
+            }catch(PDOException $e){
+                echo 'Error: '.$e->getMessage();
+            }
+            $row     = $query->fetch(PDO::FETCH_ASSOC);
+            $email   = $row['email'];
+            $subject = "Comments";
+            $url     = "http://127.0.0.1:8080/cam/camagru/index.php";
+            $message = "Someone commented on your photo, login to read the comments. $url";
+            mail($email, $subject, $message);
             header('Location: gallery.php');
         }catch(PDOException $e){
             echo "Error: " . $e->getMessage();
         }
+        
     }
     if (isset($_POST['like'])){
         $usr    = $_SESSION['username'];

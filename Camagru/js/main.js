@@ -13,12 +13,6 @@ const pfilter = document.getElementById('pf');
 const edited  = document.getElementById('edited');
 const save    = document.getElementById('save-photo');
 
-var signup_password = document.getElementById('password');
-var signup_confirm  = document.getElementById('confirm-password');
-var prof_password   = document.getElementById('newpassword');
-var prof_confirm    = document.getElementById('confirm-newpassword');
-var reset_password  = document.getElementById('reset-password');
-var reset_confirm   = document.getElementById('reset-confirm');
 var upload_image   = document.getElementById('upload-image');
 var img_u   = document.getElementById('img-u');
 
@@ -79,16 +73,6 @@ function save_photo(){
   console.log(document.getElementById('snap').value);
   edited.appendChild(image);
 }
-
-function validate_password(password, confirm){
-  if (password != confirm){
-    confirm.setCustomValidity("Password do not match!");
-  }
-  else{
-    confirm.setCustomValidity('');
-  }
-}
-
 function open_profile(evnt, tabname){
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent");
@@ -101,17 +85,4 @@ function open_profile(evnt, tabname){
     }
     document.getElementById(tabname).style.display = "block";
     evnt.currentTarget.className += " active";
-}
-
-if (signup_confirm && signup_password){
-  signup_password.onchange = validate_password(signup_password, signup_confirm);
-  signup_confirm.onkeyup   = validate_password(signup_password, signup_confirm);
-}
-if (prof_confirm && prof_password){
-  prof_password.onchange = validate_password(prof_password, prof_confirm);
-  prof_confirm.onkeyup   = validate_password(prof_password, prof_confirm);
-}
-if (reset_confirm && reset_password){
-  reset_password.onchange = validate_password(reset_password, reset_confirm);
-  reset_confirm.onkeyup   = validate_password(reset_password, reset_confirm);
 }

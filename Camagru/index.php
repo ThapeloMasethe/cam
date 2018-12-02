@@ -24,7 +24,7 @@
                 <input  type="password" name="password" placeholder="password"  required>
                 <input  type="hidden"   name="login" value="login">
                 <button type="submit">LOGIN</button>
-                <a href="forgot_password.php">forgot password?</a>
+                <a href="forgot_password.php" id="fp">forgot password?</a>
             </form>
             
         </div>   
@@ -77,10 +77,16 @@
                     </div>';
                 $_SESSION['nocases'] = false;
             }
+            if ($_SESSION['isreset'] == true){
+                '<div class="success">
+                    <strong>SUCCESS!</strong> Your password is successfully reset. Now you can login!
+                </div>';  
+            }
          ?>
     </div>
     <?php include('./includes/footer.php'); ?>
     <script src="./js/main.js"></script>
+    <script src="./js/check.js"></script>
     </div>
 </body>
 </html>

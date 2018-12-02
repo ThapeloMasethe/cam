@@ -18,15 +18,35 @@
     </header>
     <div class="forgot-password user-container">
         <?php
+            session_start();
             echo '<form action="users.php" method="POST">
                     <p>Reset Your Password.</p>
                     <input type="password" name="new-password" placeholder="New Password"    id="reset-password" required><br>
                     <input type="password" name="confirm-new" placeholder="Confirm Password" id="reset-confirm"  required><br>
                     <button type="submit" name="reset-new" class="login">Reset Password</button>
                 </form>';
+                if ($_SESSION['shortpassword'] == true){
+                    echo '<div class="alert" color="red">
+                            <strong>ERROR!</strong> Your password is too short, enter atleast 8 characters.
+                        </div>';
+                        $_SESSION['shortpassword'] = false;
+                }
+                if ($_SESSION['nodigits'] == true){
+                    echo '<div class="alert" color="red">
+                            <strong>ERROR!</strong> Your password should contain atleast 1 digit.
+                        </div>';
+                $_SESSION['nodigits'] = false;
+                }
+                if ($_SESSION['nocases'] == true){
+                    echo '<div class="alert" color="red">
+                            <strong>ERROR!</strong> Your password should contain atleast 1 Uppercase and Lowercase.
+                        </div>';
+                    $_SESSION['nocases'] = false;
+                }
          ?>
     </div>
     <?php include('footer.php');?>
-    <script href="./js/main.js"></script>
+    <script src="./js/main.js"></script>
+    <script src="./js/check.js"></script>
 </body>
 </html>

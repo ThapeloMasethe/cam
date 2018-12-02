@@ -24,7 +24,7 @@
             `reg_date`          TIMESTAMP,
             `user_token`        VARCHAR(100),
             `verified`          CHAR(1) DEFAULT 'N',
-            `email_pref`        VARCHAR(8)
+            `email_pref`        VARCHAR(8) DEFAULT 'no';
             )");
         $query->execute();
         echo "USERS TABLE CREATED.<br>";

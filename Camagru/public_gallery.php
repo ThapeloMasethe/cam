@@ -59,5 +59,6 @@
     </div>
     <?php include('./includes/footer.php'); ?>
     <script src="./js/main.js"></script>
+    <script src="./js/check.js"></script>
 </body>
 </html>

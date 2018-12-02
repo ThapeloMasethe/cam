@@ -27,6 +27,7 @@
          ?>
     </div>
     <?php include('footer.php');?>
-    <script href="./js/main.js"></script>
+    <script src="./js/main.js"></script>
+    <script src="./js/check.js"></script>
 </body>
 </html>

@@ -14,26 +14,29 @@ body{
                     HEADER               
 ••••••••••••••••••••••••••••••••••••••••••••••*/
 header{
-    background-color: azure;
+    background-color: #708090;
     width: 100%;
     height: 10%;
     padding-top: 2px;
     margin-bottom: 1px;
-    box-shadow: 5px 5px 8px grey;
+    border: 1px solid #FFD700;
     overflow: auto;
     position: relative;
+    color: #FFD700;
 }
 /*••••••••••••••••••••••••••••••••••••••••••••••••
                     FOOTER              
 •••••••••••••••••••••••••••••••••••••••••••••••••*/
 footer{
-    background-color: azure;
+    background-color: #708090;
     width: 100%;
     height: 15%;
     clear: both;
     text-align: center;
     padding: 5px 0 5px 0;
-    box-shadow: 5px 5px 8px grey;
+    /* box-shadow: 5px 5px 8px grey; */
+    border: 1px solid #FFD700;
+    color: #FFD700;
 }
 /*••••••••••••••••••••••••••••••••••••••••••••••••
           MAIN CONTAINER         
@@ -43,7 +46,7 @@ footer{
     height: 600px;
     margin: 20px 0 20px 0;
     float: left;
-    box-shadow: 5px 5px 8px grey;
+    border: 1px solid #FFD700;
 }
 .main-container img{
     width: 100%;
@@ -54,48 +57,56 @@ footer{
 •••••••••••••••••••••••••••••••••••••••••••••••••••*/
 .user-container{
     text-align: center;
-    background-color: #F1F1F1;
+    background-color: #708090;
     width: 28%;
     height: 580px;
     margin: 20px 0 20px 0;
     float: right;
     padding: 10px 0 10px 0;
-    box-shadow: 5px 5px 8px grey;
+    border: 1px solid #FFD700;
+    color: #FFD700;
 }
 .user-container button{
     width: 80%;
     height: 38px;
+    color: #FFD700;
     box-sizing: border-box;
-    background-color: azure;
-    border: 1px solid azure;
+    background-color: grey;
+    border: 1px solid #FFD700;
 }
 .user-container button:hover{
-    box-shadow: 5px 5px 8px grey;
+    background-color: #FFD700;
+    color: #708090;
+    border: 1px solid white;
 }
 input[type=text], input[type=password], input[type=email]{
     width: 80%;
     padding: 12px 12px;
     margin: 5px 0;
     display: inline-block;
-    border: 1px solid azure;
+    border: 1px solid #FFD700;
     box-sizing: border-box;
+    color: #708090;
 }
 .login input{
     width: 15%;
     padding: 12px 12px;
     margin: 5px 0;
-    border: 1px solid #F1F1F1;
+    border: 1px solid #FFD700;
     box-sizing: border-box;
+    color: #708090;
 }
 .login button{
     width: 8%;
     height: 38px;
-    border: 1px solid #f1f1f1;
-    background-color: #f1f1f1;
+    border: 1px solid #FFD700;
+    background-color: grey;
+    color: #FFD700;
 }
 .login button:hover{
-    box-shadow: 5px 5px 8px grey;
-    border: 1px solid #F1F1F1;
+    background-color: #FFD700;
+    color: #708090;
+    border: 1px solid white;
 }
 .user-profile input{
     display: inline-block;
@@ -109,8 +120,8 @@ input[type=text], input[type=password], input[type=email]{
     height: 600px;
     margin: 20px 0 20px 0;
     float: left;
-    background-color: #F1F1F1;
-    box-shadow: 5px 5px 8px grey;
+    background-color: #708090;
+    border: 1px solid #FFD700;
 }
 .video-container video{
     width: 100%;
@@ -124,8 +135,8 @@ input[type=text], input[type=password], input[type=email]{
     height: 600px;
     text-align: center;
     margin: 20px 0 20px 0;
-    background-color: #f1f1f1;
-    box-shadow: 5px 5px 8px grey;
+    background-color: #708090;
+    border: 1px solid #FFD700;
     float: right;
 }
 .gallery img{
@@ -153,7 +164,7 @@ input[type=text], input[type=password], input[type=email]{
     height: 60%;
     width: 50%;
     margin: 0% 25% 0% 25%;
-    box-shadow: 5px 5px 8px grey;
+    border: 1px solid #FFD700;
 }
 .gallery-container p{
     margin-left: 25%;
@@ -165,15 +176,14 @@ input[type=text], input[type=password], input[type=email]{
     width: 100%;
     height: 200px;
     margin: 2% 0 2% 0;
-    background-color: #f1f1f1;
-    box-shadow: 5px 5px 8px grey;
+    background-color: #708090;
+    border: 1px solid #FFD700;
 }
 #edited img{
     height: 80%;
     width: 15%;
     margin: 2% 2% 2% 2%;
-    border: 1px solid azure;
-    box-shadow: 5px 5px 8px grey;
+    border: 1px solid #FFD700;
     overflow: hidden;
 }
 .filters-container img{
@@ -184,7 +194,7 @@ input[type=text], input[type=password], input[type=email]{
     float: left;
     width: 80px;
     height: 100px;
-    background-color: azure;
+    background-color: #708090;
     margin: 6px 0 0 6px;
 }
 .filters img{
@@ -192,16 +202,16 @@ input[type=text], input[type=password], input[type=email]{
     height: 100px;
 }
 .filters img:hover{
-    box-shadow: 5px 5px 8px grey;
+    box-shadow: 5px 5px 8px #FFD700;
 }
 .superpose{
-    background-color: #f1f1f1;
+    background-color: #708090;
     float: left;
     height: 50%;
 }
 .edit-panel{
     height: 50%;
-    background-color: #f1f1f1;
+    background-color: #708090;
     width: 100%;
 }
 .edit-panel img{
@@ -215,25 +225,29 @@ input[type=text], input[type=password], input[type=email]{
     width: 50%;
     height: 8%;
     margin-bottom: 1%;
-    background-color: azure;
-    border: 1px solid azure;
+    border: 1px solid #FFD700;
+    background-color: grey;
+    color: #FFD700;
     font-size: 16px;
 }
 .upload-photo{
     width: 50%;
     height: 8%;
     margin-bottom: 1%;
-    background-color: azure;
-    border: 1px solid azure;
+    border: 1px solid #FFD700;
+    background-color: grey;
+    color: #FFD700;
     font-size: 16px;
 }
 .upload-photo:hover{
-    border: 1px solid azure;
-    box-shadow: 5px 5px 8px grey;
+    background-color: #FFD700;
+    color: #708090;
+    border: 1px solid white;
 }
 #photo:hover, #upload-photo:hover{
-    border: 1px solid azure;
-    box-shadow: 5px 5px 8px grey;
+    background-color: #FFD700;
+    color: #708090;
+    border: 1px solid white;
 }
 #filter{
     width: 50%;
@@ -242,6 +256,7 @@ input[type=text], input[type=password], input[type=email]{
 
 hr{
     width: 50%;
+    color: #FFD700;
 }
 /*••••••••••••••••••••••••••••••••••••••••••••••••••
                     NAVIGATION BAR        
@@ -250,9 +265,13 @@ hr{
     float: left;
     margin-left: 5%;
 }
+#logo a:hover{
+    color: white;
+    border-bottom: 4px solid #FFD700;
+}
 #logo a{
     text-decoration: none;
-    color: black;
+    color: #FFD700;
 }
 #gal{
     float: left;
@@ -265,7 +284,11 @@ hr{
 }
 #gal a{
     text-decoration: none;
-    color: black;
+    color: #FFD700;
+}
+#gal a:hover{
+    color: white;
+    border-bottom: 4px solid #FFD700;
 }
 #login{
     margin-left: 10%;
@@ -275,10 +298,12 @@ hr{
 ••••••••••••••••••••••••••••••••••••••••••••••••••••*/
 .tab {
     overflow: hidden;
-    box-shadow: 5px 5px 8px grey;
-    background-color: azure;
+    color: #FFD700;
+    border: 1px solid #FFD700;
+    background-color: #708090;
 }
 .tab button {
+    color: #FFD700;
     background-color: inherit;
     float: left;
     border: none;
@@ -289,16 +314,19 @@ hr{
     font-size: 17px;
 }
 .tab button:hover {
-    background-color: antiquewhite;
+    background-color: #FFD700;
+    color: grey;
 }
 .tab button.active {
-    background-color: antiquewhite;
+    background-color: #FFD700;
+    color: grey;
 }
 .tabcontent {
-    background-color: #f1f1f1;
+    color: #FFD700;
+    background-color: #708090;
     display: none;
     padding: 6px 12px;
-    box-shadow: 5px 5px 8px grey;
+    border: 1px solid #FFD700;
     border-top: none;
     height: 500px;
     position: relative;
@@ -330,38 +358,43 @@ hr{
     overflow: auto;
     float: left;
     margin: 30px 0 30px 0;
+    border: 1px solid #FFD700;
     box-shadow: 5px 5px 8px grey;
     margin-right: 0;
   }
   #like, #comment{
       margin-left: 25%;
-      box-shadow: 5px 5px 8px grey;
+      border: 1px solid #FFD700;
+      color: #FFD700;
   }
   #like{
-      background-color: azure;
+    background-color: #708090;
       width: 10%;
       height: 10%;
       float: left;
+      color: #FFD700;
   }
   #comment{
-    background-color: azure;
+    background-color: #708090;
     width: 10%;
     height: 10%;
   }
   #comment-box{
+    color: #FFD700;
       margin-left: 25%;
       width: 49.7%;
       height: 20%;
       border: 1px solid azure;
-      box-shadow: 5px 5px 8px grey;
+      border: 1px solid #FFD700;
       margin-top: 0.5%;
   }
   #delete-post{
-    background-color: azure;
+    color: #FFD700;
+    background-color: #708090;
     width: 10%;
     height: 10%;
     margin-bottom: 5%;
-    box-shadow: 5px 5px 8px grey;
+    border: 1px solid #FFD700;
     margin: 2% 25% 5% 25%
   }
   strong{
@@ -391,8 +424,8 @@ hr{
     margin: 5% 25% 5% 25%;
     height: 600px;
     width: 50%;
-    background-color: #f1f1f1;
-    box-shadow: 5px 5px 8px grey;
+    background-color: #708090;
+    border: 1px solid #FFD700;
 }
 .alert{
     color: white;
@@ -400,7 +433,7 @@ hr{
     width: 80%;
     height: 11%;
     margin: 5% 9% 0 9%;
-    box-shadow: 5px 5px 8px grey;
+    border: 1px solid #FFD700;
 }
 .success{
     color: white;
@@ -408,8 +441,11 @@ hr{
     width: 80%;
     height: 11%;
     margin: 5% 9% 0 9%;
-    box-shadow: 5px 5px 8px grey;
+    border: 1px solid #FFD700;
 }
 .pages{
     text-decoration: none;
+}
+#fp{
+    color: #FFD700;
 }

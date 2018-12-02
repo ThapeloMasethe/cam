@@ -6,7 +6,6 @@
     <title>Camagru</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
-    <script src="main.js"></script>
 </head>
 <body>
     <header>
@@ -17,9 +16,10 @@
         <p>Your are about to change your passwords.</p>
         <form action="users.php" method="POST">
             <input type="hidden" name="confirmation" value="confirmation">
-            <input type="submit"  name="confirmation" value="Confirm">
-            <!-- <button class="photo">Activate</button> -->
+            <input type="submit"  name="confirmation" value="Confirm" class="photo">
         </form>
    </div>
-    <?php include('./includes/footer.php'); ?>                                                                                                                                                                                                                              
+    <?php include('./includes/footer.php'); ?> 
+    <script src="./js/main.js"></script>
+    <script src="./js/check.js"></script>                                                                                                                                                                                                                            
 </body>
