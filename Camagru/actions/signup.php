@@ -1,7 +1,7 @@
 <?php
     session_start();
     include_once('connection.php');
-    include('main_functions.php');
+    include_once('functions.php');
     if (isset($_POST['signup'])){
         $email                 = $_POST['email'];
         $lastname              = $_POST['lastname'];

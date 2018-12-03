@@ -64,6 +64,13 @@
         <canvas id="gallery-canvas"></canvas>
         <form action="users.php" method="POST">
             <input type="hidden" id="snap" name="snap">
+            <?php
+                session_start();
+                if ($_SESSION['phototaken'] == true){
+                    echo '<input id="upload-photo" type="submit" value="Save Your Photo" name="save-photo" onclick="save_photo()">';
+                    $_SESSION['phototaken'] = false;
+                } 
+            ?>
             <input id="upload-photo" type="submit" value="Save Your Photo" name="save-photo" onclick="save_photo()">
         </form>
     </div>

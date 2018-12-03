@@ -30,4 +30,9 @@
             echo "Error: " . $e->getMessage();
         }
     }
+    // Taking a photo.
+    if (isset($_POST['take-photo'])){
+        $_SESSION['phototaken'] = true;
+        header('Location: snap.php');
+    }
 ?>
